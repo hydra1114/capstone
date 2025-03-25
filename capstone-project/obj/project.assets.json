@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\Repo\\capstone-project\\capstone-project.csproj",
+      "projectUniqueName": "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\capstone\\capstone-project\\capstone-project.csproj",
       "projectName": "capstone-project",
-      "projectPath": "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\Repo\\capstone-project\\capstone-project.csproj",
+      "projectPath": "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\capstone\\capstone-project\\capstone-project.csproj",
       "packagesPath": "C:\\Users\\colen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\Repo\\capstone-project\\obj\\",
+      "outputPath": "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\capstone\\capstone-project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\colen\\AppData\\Roaming\\NuGet\\NuGet.Config"
