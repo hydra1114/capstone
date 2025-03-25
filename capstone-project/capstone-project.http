@@ -1,0 +1,6 @@
+@capstone_project_HostAddress = http://localhost:5227
+
+GET {{capstone_project_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
