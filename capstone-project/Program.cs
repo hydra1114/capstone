@@ -39,7 +39,8 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
-PathHelper.FindCommonPoints();
+//PathHelper.PathHelper.FindCommonPoints();
+ElevationService.AddElevationDataAsync().Wait();
 
 app.Run();
 
