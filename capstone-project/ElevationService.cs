@@ -25,22 +25,9 @@ public class ElevationService
             {
                 double latitude = feature.Geometry.Coordinates[1];
                 double longitude = feature.Geometry.Coordinates[0];
-                string apiUrl = $"https://epqs.nationalmap.gov/v1/json?x={longitude}&y={latitude}&units=Feet&output=json";
 
-                // Use GetAsync so you can inspect the response code
-                var response = await client.GetAsync(apiUrl);
-                if (response.StatusCode == HttpStatusCode.MovedPermanently ||
-                    response.StatusCode == HttpStatusCode.Redirect ||
-                    response.StatusCode == HttpStatusCode.RedirectMethod)
-                {
-                    var redirectUrl = response.Headers?.Location?.ToString();
-                    response = await client.GetAsync(redirectUrl);
-                }
-
-                var jsonResponse = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Response: {jsonResponse}");
-                var elevationResponse = JsonSerializer.Deserialize<ElevationResponse>(jsonResponse);
-                feature.Properties["elevation"] = elevationResponse?.value.ToString() ?? "0";
+                double elevation = await GetElevationAsync(client, latitude, longitude);
+                feature.Properties["elevation"] = elevation.ToString();
             }
         }
 
@@ -49,7 +36,27 @@ public class ElevationService
 
         Console.WriteLine($"Elevation data written to {outputFilePath}");
     }
+
+    public static async Task<double> GetElevationAsync(HttpClient client, double latitude, double longitude)
+    {
+        string apiUrl = $"https://epqs.nationalmap.gov/v1/json?x={longitude}&y={latitude}&units=Feet&output=json";
+        var response = await client.GetAsync(apiUrl);
+        
+        if (response.StatusCode == HttpStatusCode.MovedPermanently ||
+            response.StatusCode == HttpStatusCode.Redirect ||
+            response.StatusCode == HttpStatusCode.RedirectMethod)
+        {
+            var redirectUrl = response.Headers?.Location?.ToString();
+            response = await client.GetAsync(redirectUrl);
+        }
+
+        var jsonResponse = await response.Content.ReadAsStringAsync();
+        Console.WriteLine($"Response: {jsonResponse}");
+        var elevationResponse = JsonSerializer.Deserialize<ElevationResponse>(jsonResponse);
+        return elevationResponse?.value ?? 0;
+    }
 }
+
 public class ElevationResponse
 {
     public Location location { get; set; }
