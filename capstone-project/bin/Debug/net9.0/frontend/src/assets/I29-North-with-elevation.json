@@ -5,7 +5,8 @@
       "type": "Feature",
       "properties": {
         "ref": "75",
-        "highway": "motorway_junction"
+        "highway": "motorway_junction",
+        "elevation": "1023.9158417351222"
       },
       "geometry": {
         "type": "Point",
@@ -19,7 +20,8 @@
       "type": "Feature",
       "properties": {
         "ref": "89",
-        "highway": "motorway_junction"
+        "highway": "motorway_junction",
+        "elevation": "1023.2855656191527"
       },
       "geometry": {
         "type": "Point",
@@ -33,7 +35,8 @@
       "type": "Feature",
       "properties": {
         "ref": "95",
-        "highway": "motorway_junction"
+        "highway": "motorway_junction",
+        "elevation": "1038.7315857230055"
       },
       "geometry": {
         "type": "Point",
@@ -47,7 +50,8 @@
       "type": "Feature",
       "properties": {
         "ref": "82",
-        "highway": "motorway_junction"
+        "highway": "motorway_junction",
+        "elevation": "1012.8302910785472"
       },
       "geometry": {
         "type": "Point",
@@ -61,7 +65,8 @@
       "type": "Feature",
       "properties": {
         "ref": "105",
-        "highway": "motorway_junction"
+        "highway": "motorway_junction",
+        "elevation": "1044.4856712581861"
       },
       "geometry": {
         "type": "Point",
@@ -75,7 +80,8 @@
       "type": "Feature",
       "properties": {
         "ref": "112",
-        "highway": "motorway_junction"
+        "highway": "motorway_junction",
+        "elevation": "1050.7831258921192"
       },
       "geometry": {
         "type": "Point",

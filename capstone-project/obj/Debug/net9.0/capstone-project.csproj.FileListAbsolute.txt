@@ -94,3 +94,7 @@ C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-proje
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\obj\Debug\net9.0\capstone-project.pdb
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\obj\Debug\net9.0\capstone-project.genruntimeconfig.cache
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\obj\Debug\net9.0\ref\capstone-project.dll
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\I29-North-with-elevation.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\NetTopologySuite.dll
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\graph.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\path.json

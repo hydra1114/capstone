@@ -1,5 +1,9 @@
+using System.Text.Json;
+using PathHelper;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var root = "C:\\Users\\colen\\OneDrive\\Grad School\\CSCI 8910 - Capstone\\capstone\\capstone-project\\frontend\\src\\assets";
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddEndpointsApiExplorer();
@@ -40,7 +44,14 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast");
 
 //PathHelper.PathHelper.FindCommonPoints();
-ElevationService.AddElevationDataAsync().Wait();
+//ElevationService.AddElevationDataAsync().Wait();
+var pathToFind = JsonSerializer.Deserialize<FeatureCollection>(File.ReadAllText(Path.Join(root, "I29-North-with-elevation.json")));
+var firstPoint = pathToFind.Features[0].Geometry.Coordinates;
+var lastPoint = pathToFind.Features[pathToFind.Features.Count - 1].Geometry.Coordinates;
+var worked = int.TryParse(pathToFind.Features[0].Properties["ref"], out var firstMileMarker);
+worked = int.TryParse(pathToFind.Features[pathToFind.Features.Count - 1].Properties["ref"], out var lastMileMarker) && worked;
+Console.WriteLine($"Distance: {Math.Abs(firstMileMarker - lastMileMarker)}");
+if (worked) PathFinder.PathFinder.FindPath(new PathFinder.Point (firstPoint[0], firstPoint[1]), new PathFinder.Point (lastPoint[0], lastPoint[1]), Math.Abs(firstMileMarker - lastMileMarker));
 
 app.Run();
 
