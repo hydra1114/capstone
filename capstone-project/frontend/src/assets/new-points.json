@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "12",
+        "highway": "motorway_junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.0737501,
+          41.2914616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "13",
+        "highway": "motorway_junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.05796216273933,
+          41.29973057756262
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "4",
+        "highway": "motorway_junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.98989058373215,
+          41.34829176977726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "5",
+        "highway": "motorway_junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.00000758030414,
+          41.34640959034417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "6",
+        "highway": "motorway_junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.00812970277109,
+          41.336729929691586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "9",
+        "highway": "motorway_junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.02638628821799,
+          41.31626853268786
+        ]
+      }
+    }
+  ]
+}
