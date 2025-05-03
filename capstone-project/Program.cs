@@ -51,7 +51,12 @@ var lastPoint = pathToFind.Features[pathToFind.Features.Count - 1].Geometry.Coor
 var worked = int.TryParse(pathToFind.Features[0].Properties["ref"], out var firstMileMarker);
 worked = int.TryParse(pathToFind.Features[pathToFind.Features.Count - 1].Properties["ref"], out var lastMileMarker) && worked;
 Console.WriteLine($"Distance: {Math.Abs(firstMileMarker - lastMileMarker)}");
-if (worked) PathFinder.PathFinder.FindPath(new PathFinder.Point (firstPoint[0], firstPoint[1]), new PathFinder.Point (lastPoint[0], lastPoint[1]), Math.Abs(firstMileMarker - lastMileMarker));
+List<PathFinder.Point> points = new List<PathFinder.Point>();
+if (worked) {
+    points = PathFinder.PathFinder.FindPath(new PathFinder.Point (firstPoint[0], firstPoint[1]), new PathFinder.Point (lastPoint[0], lastPoint[1]), Math.Abs(firstMileMarker - lastMileMarker));
+    Console.WriteLine($"Length of Path: {points.Count} Features: {pathToFind.Features.Count}");
+    PathFinder.PathFinder.FindPointsAlongPath(pathToFind.Features, points);
+}
 
 app.Run();
 

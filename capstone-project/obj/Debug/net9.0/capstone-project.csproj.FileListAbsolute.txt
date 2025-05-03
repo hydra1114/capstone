@@ -97,4 +97,9 @@ C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-proje
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\I29-North-with-elevation.json
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\NetTopologySuite.dll
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\graph.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\I680-curve_smoothed_sample.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\path-I29.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\I680-new-points.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\path-I680.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\I29-new-points.json
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\path.json

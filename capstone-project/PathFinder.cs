@@ -14,7 +14,7 @@ namespace PathFinder
         public static List<Point> FindPath(Point start, Point end, double distance)
         {
             //var thing = DivideAndConquer(start, end, distance);
-            var thing = GenerateGraph(start, end, distance, 9);
+            var thing = GenerateGraph(start, end, distance, 11);
             thing.Insert(0, start);
             thing.Add(end);
             
@@ -32,7 +32,7 @@ namespace PathFinder
                 0,
                 thing.Count - 1,
                 distance,
-                0.005); // 10% deviation
+                0.005); // .05% deviation
 
             path.Sort((a, b) => a.ElevationChange.CompareTo(b.ElevationChange));
             var avgElevationChange = path.Average(p => p.ElevationChange);
@@ -284,23 +284,25 @@ namespace PathFinder
         {
             var graph = BuildAdjacencyList(edges);
 
-            var currentPath = new List<int>();
-            var visited = new HashSet<int>();
             var results = new List<PathResult>();
-
             double minDistance = targetDistance * (1.0 - allowedDeviation);
             double maxDistance = targetDistance * (1.0 + allowedDeviation);
+
             Console.WriteLine($"Target Distance: {targetDistance} - Min: {minDistance} - Max: {maxDistance}");
-            void Dfs(int current, double distanceSoFar, double elevationChangeSoFar)
+
+            // Iterative DFS using a stack
+            var stack = new Stack<(int Node, double DistanceSoFar, double ElevationChangeSoFar, List<int> Path)>();
+            stack.Push((start, 0, 0, new List<int> { start }));
+
+            while (stack.Count > 0)
             {
-                currentPath.Add(current);
-                visited.Add(current);
+                var (current, distanceSoFar, elevationChangeSoFar, currentPath) = stack.Pop();
 
                 if (current == end)
                 {
                     if (distanceSoFar >= minDistance && distanceSoFar <= maxDistance)
                     {
-                        if (results.Count() < 15)
+                        if (results.Count < 15)
                         {
                             Console.WriteLine($"Path: {string.Join(" -> ", currentPath)} - Distance: {distanceSoFar} - Elevation Change: {elevationChangeSoFar}");
                         }
@@ -310,8 +312,10 @@ namespace PathFinder
                             TotalDistance = distanceSoFar,
                             ElevationChange = elevationChangeSoFar
                         });
-                        if (results.Count() > 1000){
-                            return;
+
+                        if (results.Count > 2000)
+                        {
+                            break;
                         }
                     }
                 }
@@ -319,18 +323,14 @@ namespace PathFinder
                 {
                     foreach (var edge in graph[current])
                     {
-                        if (!visited.Contains(edge.To) && distanceSoFar + edge.Weight <= maxDistance)
+                        if (!currentPath.Contains(edge.To) && distanceSoFar + edge.Weight <= maxDistance)
                         {
-                            Dfs(edge.To, distanceSoFar + edge.Weight, elevationChangeSoFar + edge.ElevationChange);
+                            var newPath = new List<int>(currentPath) { edge.To };
+                            stack.Push((edge.To, distanceSoFar + edge.Weight, elevationChangeSoFar + edge.ElevationChange, newPath));
                         }
                     }
                 }
-
-                currentPath.RemoveAt(currentPath.Count - 1);
-                visited.Remove(current);
             }
-
-            Dfs(start, 0, 0);
 
             return results;
         }
@@ -346,6 +346,79 @@ namespace PathFinder
             }
             return graph;
         }
+
+        public static void FindPointsAlongPath(List<GeoJsonFeature> points, List<Point> path)
+        {
+            points.Sort((a, b) => a.Properties["ref"].CompareTo(b.Properties["ref"]));
+            List<double> distances = new List<double>();
+            List<Point> newPoints = new List<Point>();
+            var first = int.Parse(points[0].Properties["ref"]);
+            for (int i = 1; i < path.Count; i++)
+            {
+                var segmentLength = CalculateDistance(path[i - 1], path[i]);
+                distances.Add(segmentLength);
+            }
+
+            for (int i = 1; i < points.Count; i++)
+            {
+                var nextpointMileMarker = int.Parse(points[i].Properties["ref"]);
+                newPoints.Add(FindCoordinateAtDistance(path, distances, Math.Abs(nextpointMileMarker - first)));
+            }
+            newPoints.Insert(0, path.First());
+            newPoints.Add(path.Last());
+            
+            for (int i = 0; i < points.Count; i++)
+            {
+                points[i].Geometry.Coordinates = new List<double> { newPoints[i].X, newPoints[i].Y };
+            }
+
+            var featureCollection = new FeatureCollection
+            {
+                Type = "FeatureCollection",
+                Features = points
+            };
+            var filePath = Path.Join(root, "new-points.json");
+            string geoJsonString = JsonSerializer.Serialize(featureCollection, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, geoJsonString);
+
+            return;
+        }
+
+        public static Point InterpolateBetween(
+            Point p1,
+            Point p2,
+            double fraction)
+        {
+            double lat = p1.Y + (p2.Y - p1.Y) * fraction;
+            double lon = p1.X + (p2.X - p1.X) * fraction;
+            return new Point(lon, lat);
+        }
+
+        public static Point FindCoordinateAtDistance(
+        List<Point> pathPoints,
+        List<double> segmentDistances, // precomputed distances between each pair of points
+        double targetDistance)
+        {
+            double accumulated = 0.0;
+
+            for (int i = 0; i < segmentDistances.Count; i++)
+            {
+                double segmentLength = segmentDistances[i];
+
+                if (accumulated + segmentLength >= targetDistance)
+                {
+                    double remaining = targetDistance - accumulated;
+                    double fraction = remaining / segmentLength;
+                    return InterpolateBetween(pathPoints[i], pathPoints[i + 1], fraction);
+                }
+
+                accumulated += segmentLength;
+            }
+
+            // If target distance is beyond total path length, return last point
+            return pathPoints.Last();
+        }
+
 
     }
 
