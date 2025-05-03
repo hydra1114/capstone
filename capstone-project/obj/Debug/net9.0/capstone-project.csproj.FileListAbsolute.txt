@@ -103,3 +103,4 @@ C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-proje
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\path-I680.json
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\I29-new-points.json
 C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\path.json
+C:\Users\colen\OneDrive\Grad School\CSCI 8910 - Capstone\capstone\capstone-project\bin\Debug\net9.0\frontend\src\assets\new-points.json
