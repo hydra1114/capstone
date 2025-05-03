@@ -23,12 +23,12 @@ interface FeatureCollection {
 }
 const dataGathering = false;
 //allows for easily switching between what data is being mapped
-const predictedRoad: FeatureCollection = (dataGathering ? averageCoordinates : bestPath) as FeatureCollection;
-const predictedExits = newPoints as FeatureCollection;
+const predictedRoad: FeatureCollection = (dataGathering ? averageCoordinates : bestOmahaNorth) as FeatureCollection;
+const predictedExits = omahaNorthPredictedExits as FeatureCollection;
 
 
-const actualRoad: FeatureCollection = insterstateNorth as FeatureCollection;
-const actualExits = insterstateNorth as FeatureCollection;
+const actualRoad: FeatureCollection = omahaNorth as FeatureCollection;
+const actualExits = omahaNorth as FeatureCollection;
 
 const USMap: React.FC = () => {
   //adjust based on screen size
